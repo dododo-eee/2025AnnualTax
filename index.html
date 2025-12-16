@@ -154,14 +154,21 @@
             {
               date: '2026. 1. 20.(화) ~ 27.(화)',
               title: '나이스(NEIS) 자료 업로드',
-              desc: '국세청 PDF 다운로드 후 나이스 시스템에 업로드 진행',
+              desc: '국세청 PDF 다운로드 후 나이스 시스템에 업로드 진행, 인적공제 부분 2024년 신고분과 비교 하여 작성 ',
+              icon: Upload,
+              color: 'bg-purple-100 text-purple-600'
+            },
+               {
+              date: '2026. 1. 20.(화) ~ 27.(화)',
+              title: '국세청 PDF 이메일 제출',
+              desc: '국세청 PDF 다운로드 후 gogoquick@sen.go.kr로 제출 ',
               icon: Upload,
               color: 'bg-purple-100 text-purple-600'
             },
             {
               date: '2026. 1. 27.(화)',
               title: '서류 제출 마감 (기한엄수)',
-              desc: '각종 신고서 및 증빙서류 출력물(서명필) 행정실 제출',
+              desc: '각종 신고서 및 증빙서류 출력물(서명필) 행정실 제출, 홈택스 PDF 출력X',
               icon: AlertCircle,
               color: 'bg-red-100 text-red-600'
             }
@@ -191,12 +198,12 @@
               </div>
 
               <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100">
-                <h2 className="text-lg font-bold text-blue-900 mb-3">📌 처리 절차 개요</h2>
+                <h2 className="text-lg font-bold text-blue-900 mb-3">📌 필독 </h2>
                 <ol className="list-decimal list-inside space-y-2 text-blue-800 text-sm font-medium">
-                  <li><span className="font-bold">국세청 홈택스 접속</span> 및 자료 조회 (근무 기간 월만 선택)</li>
-                  <li>소득·세액공제 자료 <span className="font-bold">PDF 내려받기</span></li>
-                  <li><span className="font-bold">나이스(NEIS) 접속</span> (나의 메뉴 &gt; 연말정산 &gt; 정산공제 자료등록)</li>
-                  <li>PDF 파일 업로드 및 기타 명세서(의료비 등) 등록</li>
+                  <li><span className="font-bold">중도 입사자 </span> 근무 기간 월만 선택</li>
+                  <li><span className="font-bold">행정실 담당자에게 국세청 PDF 이메일 보내기 </span> gogoquick@sen.go.kr</li>
+                  <li><span className="font-bold">국세청 PDF 출력 해오지 않기</span></li>
+                  <li>주택자금 공제: <span className="font-bold">구매당시</span> 주택 가격 확인서: 아파트의 경우 인터넷 발급 불가, 본인만 발급가능 </li>
                   <li>소득공제신고서 등 <span className="font-bold">출력물 서명 후 제출</span></li>
                 </ol>
               </div>
@@ -521,3 +528,4 @@
     </script>
 </body>
 </html>
+
