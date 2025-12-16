@@ -64,7 +64,7 @@
 
           const tabs = [
             { id: 'schedule', label: '일정 및 절차', icon: Calendar },
-            { id: 'deductions', label: '공제 항목', icon: Calculator },
+            { id: 'deductions', label: '주의 사항 및 공제 항목', icon: Calculator },
             { id: 'documents', label: '제출 서류', icon: FileText },
             { id: 'changes', label: '주요 변경', icon: CheckCircle2 },
           ];
@@ -203,9 +203,7 @@
                   <li><span className="font-bold">중도 입사자 </span> 근무 기간 월만 선택</li>
                   <li><span className="font-bold">행정실 담당자에게 국세청 PDF 이메일 보내기 </span> gogoquick@sen.go.kr</li>
                   <li><span className="font-bold">개산급 사용액은 카드 이용 금액에서 빼기</span></li>
-                  <li>장기주택저당차입금 이자 상환액: <span className="font-bold">구매당시</span> 공동/개별 주택 가격 확인서 필요 (공동 주택(아파트) 인터넷 발급 불가,동주민/구청 본인만 가능) </li>
                   <li>소득공제신고서 등 <span className="font-bold">출력물 서명 후 제출</span></li>
-                  <li>보험 공제는 본인과 기본 소득 공제에 포함된 대상만 가능</li>
                 </ol>
               </div>
             </div>
@@ -217,6 +215,7 @@
 
           const categories = [
             { id: 'all', label: '전체' },
+            { id: 'caution', label: '주의사항' }
             { id: 'human', label: '인적공제' },
             { id: 'money', label: '금융/보험' },
             { id: 'house', label: '주택자금' },
@@ -224,6 +223,45 @@
           ];
 
           const items = [
+            {
+              category: 'caution',
+              title: '장기주택저당차입금 이자 상환액 대상자',
+              icon: Users,
+              limit: '차입시기에 따라 요건 해당 여부 다를 수 있음',
+              details: [
+                '구매당시 개별/공동 주택 가격 확인서 제출 필요',
+                '-공동주택가격확인서는 인터넷 발급 불가, 본인만 발급가능'
+                '대출계약서 사본, 주민등록등본 제출 필요'
+              ]
+            },
+            {
+              category: 'caution',
+              title: '개산급 사용자',
+              icon: Users,
+              limit: '',
+              details: [
+                '카드 이용 금액에서 개산급 사용액 제외'
+              ]
+            },
+              {
+              category: 'caution',
+              title: '실손의료보험금',
+              icon: Users,
+              limit: '',
+              details: [
+                '본인과 인적공제 대상자 명의의 보험금만 공제 가능'
+                       ]
+            },
+              {
+              category: 'caution',
+              title: '부녀자',
+              icon: Users,
+              limit: '연 50만원',
+              details: [
+                '총급여 7,000만원 이하 일 때 가능',
+                '배우자 없는 경우: 기본공제 대상자 요건에 맞는 부양 가족 1명 이상일 때
+                       ]
+            },
             {
               category: 'human',
               title: '기본공제',
@@ -381,6 +419,7 @@
             { name: '기부금 명세서', note: '기부금 공제 신청자 (나이스 출력)' },
             { name: '안경/교복 구입비 영수증', note: '해당자 (국세청 자료에 없을 시)' },
             { name: '월세 이체 영수증', note: '월세 공제 신청자 (계약서 등 포함)' },
+            { name: '구매당시 공동/개별 주택가격확인서', note: '장기주택정당차입금 이자 상환액 대상자 (공동주택가격 확인서 인터넷 발급 불가, 본인만 발급가능)' },
           ];
 
           return (
@@ -529,5 +568,6 @@
     </script>
 </body>
 </html>
+
 
 
