@@ -215,7 +215,7 @@
 
           const categories = [
             { id: 'all', label: '전체' },
-            { id: 'caution', label: '주의사항' }, /* 수정: 콤마 추가 */
+            { id: 'caution', label: '주의사항' },
             { id: 'human', label: '인적공제' },
             { id: 'money', label: '금융/보험' },
             { id: 'house', label: '주택자금' },
@@ -226,11 +226,11 @@
             {
               category: 'caution',
               title: '장기주택저당차입금 이자 상환액 대상자',
-              icon: Users,
+              icon: Users, // 렌더링 시 AlertCircle(느낌표)로 대체됨
               limit: '차입시기에 따라 요건 해당 여부 다를 수 있음',
               details: [
                 '구매당시 개별/공동 주택 가격 확인서 제출 필요',
-                '-공동주택가격확인서는 인터넷 발급 불가, 본인만 발급가능', /* 수정: 콤마 추가 */
+                '-공동주택가격확인서는 인터넷 발급 불가, 본인만 발급가능',
                 '대출계약서 사본, 주민등록등본 제출 필요'
               ]
             },
@@ -243,24 +243,24 @@
                 '카드 이용 금액에서 개산급 사용액 제외'
               ]
             },
-              {
+            {
               category: 'caution',
               title: '실손의료보험금',
               icon: Users,
               limit: '',
               details: [
                 '본인과 인적공제 대상자 명의의 보험금만 공제 가능'
-                        ]
+              ]
             },
-              {
+            {
               category: 'caution',
               title: '부녀자',
               icon: Users,
               limit: '연 50만원',
               details: [
                 '총급여 7,000만원 이하 일 때 가능',
-                '배우자 없는 경우: 기본공제 대상자 요건에 맞는 부양 가족 1명 이상일 때' /* 수정: 따옴표 닫기 */
-                        ]
+                '배우자 없는 경우: 기본공제 대상자 요건에 맞는 부양 가족 1명 이상일 때'
+              ]
             },
             {
               category: 'human',
@@ -377,31 +377,37 @@
 
               {/* Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {filteredItems.map((item, index) => (
-                  <div key={index} className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div className="flex justify-between items-start mb-3">
-                      <div className="flex items-center gap-2">
-                        <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
-                          <item.icon size={20} />
+                {filteredItems.map((item, index) => {
+                  const isCaution = item.category === 'caution';
+                  const IconToRender = isCaution ? AlertCircle : item.icon;
+                  const iconBgClass = isCaution ? 'bg-pink-100 text-pink-600' : 'bg-blue-50 text-blue-600';
+
+                  return (
+                    <div key={index} className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                      <div className="flex justify-between items-start mb-3">
+                        <div className="flex items-center gap-2">
+                          <div className={`p-2 rounded-lg ${iconBgClass}`}>
+                            <IconToRender size={20} />
+                          </div>
+                          <h3 className="font-bold text-lg text-slate-800">{item.title}</h3>
                         </div>
-                        <h3 className="font-bold text-lg text-slate-800">{item.title}</h3>
                       </div>
+                      <div className="mb-3">
+                        <span className={`inline-block text-xs px-2 py-1 rounded font-medium ${isCaution ? 'bg-pink-50 text-pink-700' : 'bg-slate-100 text-slate-600'}`}>
+                          {item.limit ? `한도: ${item.limit}` : '주의사항 확인'}
+                        </span>
+                      </div>
+                      <ul className="space-y-1">
+                        {item.details.map((detail, idx) => (
+                          <li key={idx} className="text-sm text-slate-600 flex items-start gap-2">
+                            <span className={`mt-1.5 w-1 h-1 rounded-full flex-shrink-0 ${isCaution ? 'bg-pink-400' : 'bg-slate-400'}`}></span>
+                            <span className="leading-relaxed">{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <div className="mb-3">
-                      <span className="inline-block bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded font-medium">
-                        한도: {item.limit}
-                      </span>
-                    </div>
-                    <ul className="space-y-1">
-                      {item.details.map((detail, idx) => (
-                        <li key={idx} className="text-sm text-slate-600 flex items-start gap-2">
-                          <span className="mt-1.5 w-1 h-1 bg-slate-400 rounded-full flex-shrink-0"></span>
-                          <span className="leading-relaxed">{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           );
