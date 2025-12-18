@@ -120,7 +120,7 @@
               <footer className="bg-slate-900 text-slate-400 py-8 mt-12">
                 <div className="max-w-4xl mx-auto px-4 text-center">
                   <p className="mb-2">본 안내문은 2025년 귀속 연말정산 안내(대외용) 문서를 바탕으로 제작되었습니다.</p>
-                  <p className="text-sm">문의: 행정실 및 국세청 고객만족센터 (☎126)</p>
+                  <p className="text-sm">문의: 국세청 고객만족센터 (☎126)</p>
                   <div className="mt-4 flex justify-center gap-4">
                     <a href="https://www.hometax.go.kr" target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300 flex items-center gap-1">
                       국세청 홈택스 <ExternalLink className="w-3 h-3" />
@@ -163,7 +163,7 @@
                {
               date: '2026. 1. 20.(화) ~ 27.(화)',
               title: '국세청 PDF 이메일 제출',
-              desc: '국세청 PDF 다운로드 후 gogoquick@sen.go.kr로 제출 ',
+              desc: '국세청 PDF 다운로드 후(비밀번호 설정X) gogoquick@sen.go.kr로 제출 ',
               icon: Upload,
               color: 'bg-purple-100 text-purple-600'
             },
@@ -499,10 +499,10 @@
             <div className="space-y-6">
               {/* 수정된 헤더 (파란 박스) */}
               <div className="bg-gradient-to-br from-blue-600 to-indigo-700 p-6 rounded-2xl text-white shadow-lg">
-                <h2 className="text-2xl font-bold mb-2">2025년 귀속 연말정산</h2>
+                <h2 className="text-2xl font-bold mb-2"> 연말정산 관련 문의는 126 국세청 콜센터</h2>
                 <p className="text-blue-100 font-medium flex items-center gap-2">
                   <AlertCircle className="w-5 h-5" />
-                  각종 세금 문제는 126 국세청 콜센터
+                  연말정산은 케이스에 따라 다르고 전문적 지식이 필요하기 때문에 문의사항은 국세청 콜센터로 해 주세요
                 </p>
               </div>
 
@@ -515,6 +515,7 @@
                 <p className="text-slate-600 mb-8 max-w-md leading-relaxed">
                   연말정산에 대해 궁금한 점이 있으신가요?<br />
                   AI 챗봇에게 질문하고 실시간으로 답변을 받아보세요.
+                    AI 챗봇은 실수 할 수 있습니다. 정확한 답변이 필요하시면 126 국세청 콜센터를 이용 해 주세요
                 </p>
                 <a 
                   href="https://notebooklm.google.com/notebook/9670d8c7-6cfc-4206-83f0-6028da96d8c5" 
@@ -537,8 +538,13 @@
                 </h3>
                 <div className="space-y-3">
                   <FAQItem q="중도 입사자는 어떻게 하나요?" a="전 근무지의 '근로소득 원천징수영수증'을 발급받아 현 근무지 담당자에게 제출하여 합산 신고해야 합니다." />
+                  <FAQItem q="제출 기간동안 한국에 없어요 어떻게 해야하나요?" a="2026년 5월 홈택스에서 종합소득신고하시면 됩니다" />
+                  <FAQItem q="부모님 의료비 공제는요?" a="부모님이 질문자님 기본공제대상자이고, 부모님 의료비를 질문자님 실제로 냈다면 → 다른 가족 비용은 안 넣고 “부모님 의료비만” 넣어 연말정산 하는 것 자체는 가능.​
+부모님이 소득 과다 등으로 질문자님 기본공제대상자가 전혀 될 수 없고, 국세청 해석상 “생계를 같이하는 부양가족”으로도 보기 어렵다면 → 부모님 의료비만 따로 떼서 공제받는 것은 불가. 구체적 상황에 따라 다를 수 있기 때문에 국세청 콜센터에 126 상담 요함 " />
                   <FAQItem q="맞벌이 부부 의료비 공제는요?" a="자녀 의료비 등은 몰아서 공제받거나 각각 받을 수 있습니다. 단, 본인 의료비는 본인만 공제 가능합니다." />
                   <FAQItem q="실손의료비는 어떻게 하나요?" a="보험회사로부터 수령한 실손의료비는 의료비 지출액에서 반드시 차감하고 신고해야 합니다. (이중공제 금지)" />
+                  <FAQItem q="성인자녀 공제는요?" a="20세 초과, 소득도 있는 일반 성인자녀: 부모 부양가족 기본공제, 자녀세액공제, 카드공제, 보험료공제 대부분 불가이고, 의료비는 “생계를 같이 하는지” 여부에 따라 일부 가능성이 있음.
+20세 초과지만 장애인 등록 성인자녀, 소득도 100만원 이하: 나이제한 없이 기본공제 및 장애인추가공제, 의료비·보험료·카드 등 각종 부양가족 연동공제 적용 가능." 소득요건(소득금액 100만원 이하, 근로소득만 있으시 500만원 이하면 성인자녀 교육비 세액 공제는 공제 대상 />
                 </div>
               </div>
             </div>
@@ -571,3 +577,4 @@
     </script>
 </body>
 </html>
+
