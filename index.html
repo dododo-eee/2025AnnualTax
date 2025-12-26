@@ -21,7 +21,7 @@ import {
   FileText
 } from 'lucide-react';
 
-// --- Data Definitions ---
+// --- Data Definitions (원본 데이터 그대로 유지) ---
 const ATTACHMENT_DATA = [
   { category: '인적공제', item: '부양가족 증명', docs: '주민등록표등본, 가족관계증명서', issue: '주민센터', note: '' },
   { category: '주택자금', item: '장기주택저당차입금', docs: '이자상환증명서, 등기부등본 등', issue: '금융사, 등기소', note: '국세청 간소화 확인' },
@@ -41,7 +41,7 @@ const CAUTION_ITEMS = [
 const GENERAL_DEDUCTIONS = [
   { id: 'd1', category: 'human', title: '기본 공제', limit: '1인당 150만원', desc: '본인, 배우자, 부양가족(소득 100만 이하 & 나이요건 충족 시)' },
   { id: 'd2', category: 'money', title: '신용카드 등 공제', limit: '총급여 25% 초과분의 15~40%', desc: '현금영수증, 전통시장, 대중교통 이용 시 유리합니다.' },
-  { id: 'd3', category: 'money', title: '체력단련장 이용료', limit: '30% 세액공제', desc: '2025년 신설: 수영장, 헬스장 지출분 대상' },
+  { id: 'd3', category: 'money', title: '체력단련장 이용료', limit: '30% 세액공제', desc: '✨2025년 신설: 수영장, 헬스장 지출분 대상' },
   { id: 'd4', category: 'special', title: '의료비 세액공제', limit: '총급여 3% 초과분', desc: '본인 및 부양가족을 위해 지출한 의료비 대상' },
   { id: 'd5', category: 'house', title: '월세 세액공제', limit: '연 1,000만원 한도', desc: '무주택 세대주로서 전입신고가 완료된 주택 지출액' },
   { id: 'd6', category: 'special', title: '교육비 세액공제', limit: '항목별 상이', desc: '대학생 900만, 초중고 300만 한도입니다.' },
@@ -84,7 +84,7 @@ const ScheduleSection = () => {
       hasButton: true 
     },
     { date: '26. 01. 22. ~ 01. 26.', title: 'PDF 이메일 제출', desc: 'gogoquick@sen.go.kr로 PDF 전송 (비밀번호 해제)', icon: FileText, color: 'text-purple-600', bg: 'bg-purple-50' },
-    { date: '26. 01. 22. ~ 01. 26.', title: '최종 서류 마감', desc: '행정실 최종 제출 (기한 내 미제출 시, 2026년 5월 본인 신고)', icon: AlertCircle, color: 'text-red-600', bg: 'bg-red-50' },
+    { date: '26. 01. 22. ~ 01. 26.', title: '최종 서류 마감', desc: '행정실 최종 제출 (기한 내 미제출 시, 2026년 5월 개인이 종합소득신고)', icon: AlertCircle, color: 'text-red-600', bg: 'bg-red-50' },
   ];
 
   const issuanceLinks = [
@@ -106,7 +106,7 @@ const ScheduleSection = () => {
               <div className={`absolute left-0 top-1 w-10 h-10 rounded-full ${step.bg} ${step.color} flex items-center justify-center border-4 border-white z-10 shadow-sm`}>
                 <step.icon size={18} />
               </div>
-              <div className={`text-xs font-bold mb-1 ${idx >= 2 ? 'text-red-600' : 'text-slate-400'}`}>{step.date}</div>
+              <div className={`text-xs font-bold mb-1 ${idx >= 2 ? 'text-red-600 font-black' : 'text-slate-400 font-medium'}`}>{step.date}</div>
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
                 <h3 className="text-base font-bold text-slate-800">{step.title}</h3>
                 {step.hasButton && (
@@ -121,40 +121,65 @@ const ScheduleSection = () => {
               <p className="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
               
               {step.hasButton && showGuide && (
-                <div className="mt-6 p-6 bg-slate-50 rounded-2xl border-2 border-blue-100 shadow-inner animate-in fade-in slide-in-from-top-2">
-                  <div className="flex items-center gap-2 mb-6 border-b border-blue-100 pb-3">
+                <div className="mt-6 p-6 bg-slate-50 rounded-3xl border-2 border-blue-100 shadow-inner animate-in fade-in slide-in-from-top-2">
+                  <div className="flex items-center gap-2 mb-8 border-b border-blue-100 pb-3">
                     <FileText className="text-blue-600" size={20} />
                     <h4 className="font-black text-slate-800">나이스 자료 업로드 방법</h4>
                   </div>
                   <div className="space-y-6">
                     <div className="flex items-start gap-4">
-                      <div className="bg-blue-600 text-white px-2.5 py-1 rounded-full text-[10px] font-black flex-shrink-0">STEP 1</div>
+                      <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-[10px] font-black shadow-sm flex-shrink-0">Step 01</div>
                       <div className="space-y-1">
                         <p className="text-sm font-bold text-slate-800">나이스 시스템 접속</p>
                         <a href="https://sen.eduptl.kr/" target="_blank" className="text-xs text-blue-600 underline font-medium break-all">https://sen.eduptl.kr/</a>
                       </div>
                     </div>
+                    
                     <div className="flex items-start gap-4">
-                      <div className="bg-slate-400 text-white px-2.5 py-1 rounded-full text-[10px] font-black flex-shrink-0">STEP 2</div>
-                      <div className="space-y-2">
+                      <div className="bg-slate-400 text-white px-3 py-1 rounded-full text-[10px] font-black shadow-sm flex-shrink-0">Step 02</div>
+                      <div className="space-y-1">
                         <p className="text-sm font-bold text-slate-800">메뉴 이동 및 인적공제 등록</p>
-                        <p className="text-xs text-slate-600 leading-relaxed">
-                          나의 메뉴 <ArrowRight size={10} className="inline mx-1"/> 연말정산 <ArrowRight size={10} className="inline mx-1"/> 정산공제 자료등록 이동
+                        <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                          나의 메뉴 <ArrowRight size={10} className="inline mx-1 text-slate-400"/> 연말정산 <ArrowRight size={10} className="inline mx-1 text-slate-400"/> 정산공제 자료등록 이동
                         </p>
-                        <div className="p-3 bg-blue-100/50 rounded-xl border border-blue-200">
-                           <p className="text-[11px] text-blue-800 font-bold leading-relaxed">
-                            ※ 인적공제 등록: 귀속 년도 2024년을 참조(나이스 화면 상단 드랍박스 2024 선택)하여 2025년 등록 여부를 대조하세요.
-                           </p>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 mt-3">
+                          <p className="text-[11px] text-blue-600 font-bold bg-blue-100/50 p-2.5 rounded-xl flex-grow">
+                            ※ 인적공제 등록: 귀속 년도 2024년을 참조(나이스 인적공제 등록 화면에서 드랍박스 2024 선택)하여 2025년 등록
+                          </p>
+                          <a href="https://drive.google.com/uc?export=download&id=1UyWx579GE3mxvdUCGcJKBvgxbx03P42r" className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-blue-600 text-white rounded-xl text-[11px] font-bold hover:bg-blue-700 shadow-md transition-all whitespace-nowrap">
+                            방법 안내 <Download size={14}/>
+                          </a>
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-4 p-4 bg-indigo-50 rounded-xl border border-indigo-100">
-                      <div className="bg-indigo-600 text-white px-2.5 py-1 rounded-full text-[10px] font-black flex-shrink-0">STEP 3</div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="bg-slate-400 text-white px-3 py-1 rounded-full text-[10px] font-black shadow-sm flex-shrink-0">Step 03</div>
+                      <div className="space-y-1">
+                        <p className="text-sm font-bold text-slate-800">국세청 간소화 자료 업로드</p>
+                        <p className="text-xs text-slate-600 font-medium leading-relaxed italic">
+                          홈택스에서 다운로드한 PDF 파일을 나이스 시스템에 업로드
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div className="bg-slate-400 text-white px-3 py-1 rounded-full text-[10px] font-black shadow-sm flex-shrink-0">Step 04</div>
+                      <div className="space-y-1">
+                        <p className="text-sm font-bold text-slate-800">추가 공제 명세서 등록</p>
+                        <p className="text-xs text-slate-600 font-medium">
+                          의료비지급명세서 · 기부금지급명세서 · 연금저축공제명세서 각각 등록
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4 p-4 bg-indigo-50 rounded-2xl border border-indigo-100 shadow-sm">
+                      <div className="bg-indigo-600 text-white px-3 py-1 rounded-full text-[10px] font-black shadow-sm flex-shrink-0">Step 05</div>
                       <div className="space-y-2">
-                        <p className="text-sm font-bold text-indigo-900">최종 서류 출력 및 제출</p>
-                        <p className="text-xs text-indigo-800 leading-relaxed">
-                          1. 소득공제신고서(서명필수) 제출<br/>
-                          2. 의료비·기부금·카드·연금저축 상세 명세서 출력 후 제출
+                        <p className="text-sm font-bold text-indigo-900">최종 출력물 및 서명 제출</p>
+                        <p className="text-xs text-indigo-800 font-semibold leading-relaxed">
+                          1. 소득공제신고서(서명날인), 의료비·기부금·카드·연금저축 출력물 제출 <br/>
+                          2. <span className="underline decoration-indigo-300 underline-offset-2 font-bold">기타 수기 등록 사항이 있을 시 그 페이지 출력하여 서명 제출</span>
                         </p>
                       </div>
                     </div>
@@ -168,20 +193,25 @@ const ScheduleSection = () => {
 
       <div className="bg-orange-50 p-6 rounded-2xl border border-orange-100 shadow-sm">
         <h2 className="text-lg font-bold text-orange-900 mb-4 flex items-center gap-2">
-          <ShieldAlert className="text-orange-600" /> 중도 입사자 및 책임 안내
+          <span>📌 필독 및 주의사항 안내</span>
         </h2>
         <div className="space-y-4">
           <div className="p-4 bg-white/60 rounded-xl border border-orange-100">
-            <p className="text-orange-800 text-sm leading-relaxed">
-              <span className="font-bold underline">중도 입사자:</span> 전 근무지 원천징수영수증 제출 필수. 간소화 자료는 <span className="font-bold text-orange-900">실제 근무 기간 월만 선택</span>하여 내려받으세요.
+            <p className="text-orange-800 text-sm font-medium leading-relaxed">
+              <span className="font-bold underline text-orange-900">1. 중도 입사자 필수 제출 및 선택:</span><br/>
+              • 전 근무지의 근로소득(일용근로소득 제외)이 있는 근로자는 반드시 <span className="font-black underline">전 근무지 원천징수영수증</span>을 제출해야 합니다.<br/>
+              • 국세청 간소화 자료는 반드시 <span className="font-bold">근무가 있었던 근무 기간 월만 선택(전 직장 원천징수영수증 미 제출시, 전 직장 근로기간 제외)</span>하여 내려받으시기 바랍니다.
             </p>
           </div>
           <div className="p-4 bg-red-50/50 rounded-xl border border-red-100">
-            <p className="text-red-900 text-sm font-bold mb-2">과다 공제 전수조사 주의</p>
-            <ul className="text-red-800 text-[13px] space-y-1.5 list-disc pl-4">
-              <li>국세청 프로그램을 통한 주요 항목 전수조사 실시</li>
-              <li>공제 증빙 및 신고 책임은 전적으로 <span className="underline font-black">소득자 본인</span>에게 있음</li>
-              <li>부당 공제 적발 시 가산세 및 직접 수정 신고 필요</li>
+            <p className="text-red-900 text-sm font-bold leading-relaxed flex items-start gap-2">
+              <ShieldAlert size={16} className="mt-1 flex-shrink-0" />
+              <span>2. 과다 공제 전수조사 및 본인 책임 안내</span>
+            </p>
+            <ul className="mt-2 space-y-2 text-red-800 text-[13px] font-medium leading-relaxed">
+              <li>• <span className="font-black">국세청 전수조사:</span> 2025 귀속 연말정산 종료 후 ‘연말정산 과다 공제 분석프로그램’을 통해 부양가족, 주택자금, 연금저축, 기부금 등 주요 항목에 대한 전수조사가 실시됩니다.</li>
+              <li>• <span className="font-black">소득자 본인 책임:</span> 연말정산 공제 관련 증빙서류 제출 및 신고 내용은 전적으로 <span className="underline font-black">소득자 본인에게 책임</span>이 있습니다.</li>
+              <li>• <span className="font-black">수정 신고 안내:</span> 향후 국세청으로부터 이중공제 및 과다 공제 통보를 받았을 경우, <span className="font-black">소득자가 직접 관할 세무서에 수정신고</span>를 진행해야 합니다.</li>
             </ul>
           </div>
         </div>
@@ -189,11 +219,11 @@ const ScheduleSection = () => {
 
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
         <h2 className="text-lg font-bold mb-4 flex items-center gap-2 text-slate-800">
-          <Globe className="text-blue-600" /> 인터넷 증빙 서류 발급
+          <Globe className="text-blue-600" /> 인터넷을 이용한 첨부서류 발급 안내
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {issuanceLinks.map((link, idx) => (
-            <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-white transition-all group">
+            <a key={idx} href={link.url} target="_blank" className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-white transition-all group">
               <div>
                 <div className="text-xs text-slate-400 font-medium mb-0.5">{link.name}</div>
                 <div className="text-sm font-bold text-slate-700 group-hover:text-blue-600">{link.site}</div>
@@ -224,62 +254,46 @@ const DeductionSection = () => {
     });
   }, [filter, searchTerm, allItems]);
 
-  const categories = [
-    {id: 'all', label: '전체'}, 
-    {id: 'caution', label: '🚨주의사항'}, 
-    {id: 'human', label: '인적공제'}, 
-    {id: 'money', label: '카드/금융'}, 
-    {id: 'house', label: '주택/월세'}, 
-    {id: 'special', label: '의료/교육'}
-  ];
-
   return (
     <div className="space-y-6">
       <div className="flex justify-end">
         <a 
-          href="#" 
+          href="https://drive.google.com/file/d/1IOzb79BnCu0mhfOnyPbHnMQV9fANWC3d/view?usp=sharing" 
+          target="_blank"
           className="flex items-center gap-2 px-5 py-3 bg-blue-600 text-white rounded-xl font-bold shadow-md hover:bg-blue-700 transition-all text-sm"
         >
-          <FileText size={18} /> 전체 안내서(PDF) 보기
+          <FileText size={18} /> 근로자를 위한 연말정산 안내 <ExternalLink size={14} />
         </a>
       </div>
       <div className="relative group">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500" size={20} />
         <input 
           type="text" 
-          placeholder="공제 항목이나 주의사항 검색..." 
-          className="w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-2xl shadow-sm focus:ring-4 focus:ring-blue-100 outline-none transition-all text-base" 
+          placeholder="주의사항이나 공제 항목을 검색하세요..." 
+          className="w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-2xl shadow-sm focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all text-base" 
           value={searchTerm} 
           onChange={(e) => setSearchTerm(e.target.value)} 
         />
       </div>
       <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-        {categories.map(cat => (
-          <button 
-            key={cat.id} 
-            onClick={() => setFilter(cat.id)} 
-            className={`px-4 py-2 rounded-full text-sm font-bold transition-all border whitespace-nowrap ${
-              filter === cat.id ? 'bg-slate-800 text-white border-slate-800' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'
-            }`}
-          >
-            {cat.label}
-          </button>
+        {[{id: 'all', label: '전체'}, {id: 'caution', label: '🚨주의사항'}, {id: 'human', label: '인적공제'}, {id: 'money', label: '카드/금융'}, {id: 'house', label: '주택/월세'}, {id: 'special', label: '의료/교육'}].map(cat => (
+          <button key={cat.id} onClick={() => setFilter(cat.id)} className={`px-4 py-2 rounded-full text-sm font-bold transition-all border whitespace-nowrap ${filter === cat.id ? 'bg-slate-800 text-white border-slate-800 shadow-md' : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'}`}>{cat.label}</button>
         ))}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredItems.map((item, i) => {
           const isCaution = item.type === 'caution';
           return (
-            <div key={i} className={`p-5 rounded-2xl border shadow-sm hover:shadow-md transition-all ${isCaution ? 'border-l-4 border-l-red-500 bg-white' : 'bg-white border-slate-200'}`}>
+            <div key={i} className={`p-5 rounded-2xl border shadow-sm hover:shadow-md transition-all ${isCaution ? 'border-l-4 border-l-red-500 bg-white border-red-200' : 'bg-white border-slate-200'}`}>
               <div className="flex justify-between items-start mb-2">
                 <div className="flex items-center gap-2">
-                  {isCaution && <AlertCircle size={18} className="text-red-600" />}
+                  {isCaution && <AlertCircle size={18} className="text-red-600 flex-shrink-0" />}
                   <h3 className={`font-bold ${isCaution ? 'text-red-800' : 'text-slate-800'}`}>{item.title}</h3>
                 </div>
-                {isCaution && <span className="text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-black uppercase">CAUTION</span>}
+                {isCaution && <span className="text-[10px] bg-red-600 text-white px-2 py-0.5 rounded-full font-black uppercase shadow-sm">Caution</span>}
               </div>
               <div className={`text-xs font-bold mb-2 ${isCaution ? 'text-red-500' : 'text-blue-600'}`}>{item.limit}</div>
-              <p className={`text-sm leading-snug ${isCaution ? 'text-red-700' : 'text-slate-500'}`}>{item.desc}</p>
+              <p className={`text-sm leading-snug ${isCaution ? 'text-red-700 font-medium' : 'text-slate-500'}`}>{item.desc}</p>
             </div>
           );
         })}
@@ -294,20 +308,25 @@ const DocumentsSection = ({ onOpenAttachment }) => {
   const toggle = (id) => setChecked(prev => ({ ...prev, [id]: !prev[id] }));
 
   const docs = [
-    { id: 'd1', name: '소득공제신고서', note: '나이스 출력 및 하단 본인 서명 (필수)', type: '필수' },
-    { id: 'd2', name: '국세청 간소화 PDF', note: '나이스 업로드 및 행정실 메일 제출', type: '필수' },
-    { id: 'd11', name: '전 근무지 원천징수영수증', note: '2024년 중도 입사자 한정', type: '해당자' },
-    { id: 'd7', name: '의료비 지급명세서', note: '의료비 공제 시 나이스 출력 제출', type: '해당자', hasPrint: true, path: '나이스 > 연말정산 > 나의 의료비지급명세서 > 출력' },
-    { id: 'd8', name: '기부금 명세서', note: '기부금 공제 시 나이스 출력 제출', type: '해당자', hasPrint: true, path: '나이스 > 연말정산 > 나의 기부금지급명세서 > 출력' },
-    { id: 'd10', name: '신용카드 등 공제명세서', note: '카드 공제 시 나이스 출력 제출', type: '해당자', hasPrint: true, path: '나이스 > 연말정산 > 나의 신용카드명세서 > 출력' },
-    { id: 'd3', name: '주민등록등본/가족관계증명서', note: '부양가족 변동이 있는 경우', type: '해당자' },
+    { id: 'd1', name: '소득공제신고서', note: '나이스 출력 및 하단 서명 (필수)', type: '필수' },
+    { id: 'd2', name: '국세청 간소화 PDF', note: '이메일 제출 및 나이스 업로드 (필수)', type: '필수' },
+    { id: 'd11', name: '전 근무지 근로소득 원천징수영수증', note: '전 근무지의 근로소득(일용근로소득 제외)이 있는 근로자', type: '선택' },
+    { id: 'd7', name: '의료비 지급명세서', note: '의료비 공제 시 제출 (출력 버튼 없을 시, 스크린캡처 본 제출)', type: '선택', hasPrint: true, path: '나이스 기본메뉴 > 연말정산 > 나의 의료비지급명세서 > 출력' },
+    { id: 'd8', name: '기부금 명세서', note: '기부금 공제 시 제출 (출력 버튼 없을 시, 스크린캡처 본 제출)', type: '선택', hasPrint: true, path: '나이스 기본메뉴 > 연말정산 > 나의 기부금지급명세서 > 출력' },
+    { id: 'd10', name: '신용카드 등 공제명세서', note: '카드 공제 시 제출 (출력 버튼 없을 시, 스크린캡처 본 제출)', type: '선택', hasPrint: true, path: '나이스 기본메뉴 > 연말정산 > 나의 신용카드명세서 > 출력' },
+    { id: 'd12', name: '연금·저축 등 공제명세서', note: '연금/저축 공제 시 제출 (출력 버튼 없을 시, 스크린캡처 본 제출)', type: '선택', hasPrint: true, path: '나이스 기본메뉴 > 연말정산 > 나의 연금저축공제명세서 > 출력' },
+    { id: 'd13', name: '기타 수기 등록 사항 증빙', note: '수기 입력 시 해당 페이지 출력 및 서명 제출 (출력 버튼 없을 시, 스크린캡처 본 제출)', type: '선택', hasPrint: true, path: '나이스 해당 수기 등록 페이지 > 우측 상단 출력 또는 화면 캡처' },
+    { id: 'd3', name: '주민등록등본', note: '부양가족 변동 시 제출', type: '선택' },
+    { id: 'd4', name: '가족관계증명서', note: '따로 사는 부모님 공제의 경우', type: '선택' },
+    { id: 'd9', name: '안경/교복 구입영수증', note: '해당자 (국세청 자료 없을 시)', type: '선택' },
+    { id: 'd5', name: '구매당시 주택가격 확인서', note: '장기주택정당차입금 이자 대상자 (인터넷 발급 불가)', type: '선택' },
   ];
 
   return (
     <div className="space-y-8">
       {printGuide && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden border border-slate-100 animate-in zoom-in-95 duration-200">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden border border-slate-100 animate-in zoom-in-95">
             <div className="bg-blue-600 p-6 text-white text-center">
               <Calculator size={40} className="mx-auto mb-3 opacity-90" />
               <h3 className="text-xl font-bold">{printGuide.name} 출력 경로</h3>
@@ -316,15 +335,15 @@ const DocumentsSection = ({ onOpenAttachment }) => {
               <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
                 {printGuide.path.split(' > ').map((step, i, arr) => (
                   <React.Fragment key={i}>
-                    <span className={`px-3 py-1.5 rounded-xl text-sm font-bold border ${i === arr.length - 1 ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-slate-50 text-slate-700 border-slate-200'}`}>
+                    <span className={`px-3 py-1.5 rounded-xl text-sm font-bold shadow-sm border ${i === arr.length - 1 ? 'bg-indigo-600 text-white border-indigo-500' : 'bg-slate-50 text-slate-700 border-slate-200'}`}>
                       {step}
                     </span>
                     {i < arr.length - 1 && <ArrowRight size={14} className="text-slate-300" />}
                   </React.Fragment>
                 ))}
               </div>
-              <div className="bg-orange-50 p-4 rounded-xl border border-orange-100 text-orange-800 text-xs font-bold leading-relaxed text-center">
-                ※ 나이스 시스템에서 해당 메뉴로 이동 후 우측 상단의 [출력] 버튼을 클릭하세요.
+              <div className="bg-orange-50 p-4 rounded-2xl border border-orange-100 text-orange-800 text-xs font-bold leading-relaxed text-center">
+                🚨 {printGuide.note.includes('스크린캡처') ? "출력 버튼 없을 시, 스크린캡처 본 제출" : printGuide.note}
               </div>
               <button onClick={() => setPrintGuide(null)} className="w-full mt-6 py-4 bg-slate-800 text-white rounded-2xl font-bold hover:bg-slate-900 transition-colors shadow-lg">확인했습니다</button>
             </div>
@@ -335,23 +354,20 @@ const DocumentsSection = ({ onOpenAttachment }) => {
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
         <div className="flex justify-between items-start mb-6">
           <div>
-            <h2 className="text-lg font-bold flex items-center gap-2 text-slate-800"><FileText className="text-blue-600" /> 서류 체크리스트</h2>
-            <p className="text-sm text-slate-400 mt-1">제출할 서류를 확인하고 체크해 보세요.</p>
+            <h2 className="text-lg font-bold flex items-center gap-2 text-slate-800"><FileText className="text-blue-600" /> 주요 준비 서류 체크 리스트</h2>
+            <p className="text-sm text-slate-400 mt-1">준비된 서류를 체크하며 진행하세요.</p>
           </div>
-          <button 
-            onClick={onOpenAttachment} 
-            className="px-3 py-2 bg-red-600 text-white rounded-lg text-xs font-bold hover:bg-red-700 shadow-sm flex items-center gap-1"
-          >
-            상세 가이드 <ExternalLink size={12} />
-          </button>
+          <div className="bg-pink-100 p-2 rounded-xl">
+            <button onClick={onOpenAttachment} className="px-3 py-2 bg-red-600 text-white rounded-lg text-xs font-bold hover:bg-red-700 transition-all shadow-sm flex items-center gap-1">
+              필독! 첨부서류 안내 <ExternalLink size={12} />
+            </button>
+          </div>
         </div>
         <div className="space-y-3">
           {docs.map(doc => (
-            <div key={doc.id} className={`flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl border transition-all ${checked[doc.id] ? 'bg-slate-50 border-slate-200 opacity-60' : 'bg-white border-slate-100 hover:border-blue-200'}`}>
+            <div key={doc.id} className={`group flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl border transition-all ${checked[doc.id] ? 'bg-slate-50 border-slate-200 shadow-inner' : 'bg-white border-slate-100 hover:border-blue-200'}`}>
               <div className="flex items-center gap-3 cursor-pointer flex-grow" onClick={() => toggle(doc.id)}>
-                <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${checked[doc.id] ? 'bg-blue-600 border-blue-600 text-white' : 'border-slate-200'}`}>
-                  {checked[doc.id] && <CheckCircle size={14} />}
-                </div>
+                <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-colors ${checked[doc.id] ? 'bg-blue-600 border-blue-600 text-white' : 'border-slate-200'}`}>{checked[doc.id] && <CheckCircle size={14} />}</div>
                 <div>
                   <div className={`text-sm font-bold ${checked[doc.id] ? 'text-slate-400 line-through' : 'text-slate-800'}`}>{doc.name}</div>
                   <div className="text-xs text-slate-400 leading-snug">{doc.note}</div>
@@ -359,13 +375,138 @@ const DocumentsSection = ({ onOpenAttachment }) => {
               </div>
               <div className="flex items-center gap-2 mt-3 sm:mt-0 ml-9 sm:ml-0">
                 {doc.hasPrint && (
-                  <button onClick={() => setPrintGuide(doc)} className="text-[10px] bg-slate-800 text-white px-2 py-1 rounded font-bold hover:bg-slate-700 transition-colors">나이스 출력안내</button>
+                  <button onClick={() => setPrintGuide(doc)} className="text-[10px] bg-slate-800 text-white px-2 py-1 rounded font-bold hover:bg-slate-700 transition-colors">나이스 출력 안내</button>
                 )}
-                <span className={`text-[10px] font-black uppercase px-1.5 py-0.5 rounded ${doc.type === '필수' ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400'}`}>
-                  {doc.type}
-                </span>
+                <span className={`text-[10px] font-black uppercase px-1.5 py-0.5 rounded ${doc.type === '필수' ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400'}`}>{doc.type}</span>
               </div>
             </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AttachmentView = ({ onBack }) => {
+  const [search, setSearch] = useState('');
+  const filteredData = useMemo(() => ATTACHMENT_DATA.filter(d => d.category.includes(search) || d.item.includes(search) || d.docs.includes(search)), [search]);
+
+  return (
+    <div className="min-h-screen bg-slate-50 pt-24 pb-16">
+      <header className="fixed top-0 w-full z-50 bg-white border-b border-slate-200 py-4 shadow-sm">
+        <div className="max-w-4xl mx-auto px-6 flex items-center gap-4">
+          <button onClick={onBack} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
+            <ArrowLeft size={24} className="text-slate-600" />
+          </button>
+          <h1 className="text-xl font-bold text-slate-800">첨부서류 상세 안내 (PDF 전체 내용)</h1>
+        </div>
+      </header>
+      <main className="max-w-4xl mx-auto px-4 w-full animate-in fade-in slide-in-from-bottom-4">
+        <div className="relative mb-8">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+          <input type="text" placeholder="항목 검색..." className="w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-2xl shadow-sm focus:ring-4 focus:ring-blue-100 outline-none transition-all text-base" value={search} onChange={(e) => setSearch(e.target.value)} />
+        </div>
+        <div className="space-y-4">
+          {filteredData.map((data, i) => (
+            <div key={i} className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:border-blue-300 transition-all">
+              <div className="flex justify-between items-start mb-3">
+                <span className="text-[10px] font-black bg-blue-50 text-blue-600 px-2 py-1 rounded-md uppercase tracking-wider">{data.category}</span>
+                {data.note.includes('국세청') && <span className="text-[10px] font-bold text-emerald-600 flex items-center gap-1"><CheckCircle size={12} /> 간소화 제공</span>}
+              </div>
+              <h3 className="text-lg font-bold text-slate-800 mb-3">{data.item}</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-3 border-t border-slate-50">
+                <div>
+                  <p className="text-xs text-slate-400 mb-1 font-bold uppercase">첨부 서류</p>
+                  <p className="text-sm text-slate-700 font-semibold leading-relaxed">{data.docs}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-400 mb-1 font-bold uppercase">발급처 / 비고</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">{data.issue}</p>
+                  {data.note && <p className="text-xs text-blue-500 mt-2 font-medium bg-blue-50/50 p-1.5 rounded-lg inline-block">{data.note}</p>}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
+    </div>
+  );
+};
+
+const InquirySection = () => {
+  const faqs = [
+    { q: "의료비 세액공제는 어떤 요건으로 적용되나요? (10p)", a: "• 공제 시작점: 총급여액의 3%를 초과하여 지출한 금액부터 공제 대상입니다.\n• 공제율: 일반 15% (난임시술비 30%, 미숙아·선천성이상아 의료비 20%)\n• 공제 한도:\n - 부양가족: 연 700만원 한도\n - 본인, 만 65세 이상자, 장애인, 건강보험 산정특례자: 한도 없음(전액 공제)\n• 주의사항: 실손의료보험에서 보전받은 금액은 반드시 제외하고 신고해야 합니다." },
+    { q: "교육비 세액공제는 항목별로 한도가 어떻게 되나요? (10p)", a: "• 공제율: 지출액의 15% 세액공제\n• 1인당 공제 한도:\n - 취학 전 아동: 300만원 (학원비 포함)\n - 초·중·고생: 300만원 (교복구입비 50만원, 체험학습비 30만원 포함)\n - 대학생: 900만원\n - 근로자 본인: 전액 (대학원 포함)\n - 장애인 특수교육비: 전액\n• 주의사항: 직계존속(부모님 등)의 교육비는 공제 대상이 아닙니다." },
+    { q: "맞벌이 근로자의 절세 방법은? (9p)", a: "홈택스 → 장려금·연말정산·기부금 → 편리한 연말정산 → 맞벌이 근로자 절세 안내 서비스를 통해 부부 세부담 합계가 최소화되는 방법을 찾을 수 있는 모의계산 기능을 제공합니다." },
+    { q: "전문가의 핵심 절세 전략 5가지 (12p)", a: "1. 높은 세율 적용 배우자에게 인적공제 집중\n2. 의료비/카드는 낮은 급여 배우자에게 몰아주기\n3. 의료비/취학전 학원비는 카드로 중복공제 챙기기\n4. 따로 사는 부모님도 실제 부양 시 기본공제 가능\n5. 주거용 오피스텔도 월세 세액공제 가능" }
+  ];
+
+  const mistakes = [
+    { title: "부양가족 중복·착오 공제", list: ["맞벌이 부부가 자녀를 중복으로 공제하는 경우", "형제자매가 부모님을 중복으로 공제하는 경우", "연 소득 100만원 초과 가족을 공제하는 경우"] },
+    { title: "신용카드 공제 오류", list: ["형제자매가 사용한 신용카드 금액을 본인이 공제받는 경우", "회사 경비로 처리한 법인카드 사용액을 포함하는 경우"] },
+    { title: "의료비 공제 오류", list: ["보험사에서 실손보험금을 수령한 의료비를 공제받는 경우", "부모님을 부양하는 형제 중 1명만 부모님 의료비 공제 가능 (나눠서 불가)"] },
+    { title: "교육비·기부금 공제 오류", list: ["본인 외 기본공제대상자의 대학원 교육비를 공제받는 경우", "정치자금 기부금을 본인 아닌 가족 명의로 공제받는 경우"] }
+  ];
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-gradient-to-br from-blue-700 to-indigo-800 p-8 rounded-3xl text-white shadow-lg text-center transition-all">
+        <div className="inline-flex p-3 bg-white/10 rounded-2xl mb-4"><MessageCircle size={32} /></div>
+        <div className="space-y-4 mb-8">
+          <h2 className="text-2xl font-bold tracking-tight">무엇이든 AI 상담사에게 물어보세요</h2>
+          <p className="text-blue-100 text-sm font-medium">(AI는 실수 할 수 있습니다)</p>
+          <h2 className="text-2xl font-bold text-yellow-300 tracking-tight">가장 정확한 상담은 국세청 콜센터 126입니다</h2>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="https://notebooklm.google.com/notebook/9670d8c7-6cfc-4206-83f0-6028da96d8c5" target="_blank" className="bg-white text-blue-700 px-8 py-3.5 rounded-xl font-bold hover:bg-blue-50 transition-colors shadow-sm">AI 상담사 연결</a>
+          <div className="bg-white/10 px-8 py-3.5 rounded-xl font-bold border border-white/20">콜센터 ☎ 126</div>
+        </div>
+      </div>
+
+      <div className="bg-white p-6 rounded-2xl shadow-sm border-2 border-red-100">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-2 bg-red-100 text-red-600 rounded-lg"><ShieldAlert size={24} /></div>
+          <h3 className="text-xl font-bold text-slate-800 tracking-tight">피해야 할 함정: 가장 흔한 연말정산 실수 TOP 4</h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {mistakes.map((m, i) => (
+            <div key={i} className="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
+              <h4 className="font-bold text-red-700 flex items-center gap-1.5 text-sm">
+                <Info size={14} /> {i+1}. {m.title}
+              </h4>
+              <ul className="space-y-2">
+                {m.list.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-xs text-slate-600 leading-relaxed">
+                    <XCircle size={14} className="text-red-400 mt-0.5 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+        <h3 className="font-bold text-slate-800 mb-6 flex items-center gap-2"><Download className="text-blue-600" /> 자료 내려받기</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <a href="https://drive.google.com/uc?export=download&id=1-KLKzwXsML9dKU2LkZP-rD_QQ2D327TW" target="_blank" className="flex items-center justify-center gap-2 p-4 bg-slate-50 border border-slate-200 rounded-2xl font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+            <FileText size={18} /> 연말정산 안내
+          </a>
+          <a href="https://drive.google.com/uc?export=download&id=1IOzb79BnCu0mhfOnyPbHnMQV9fANWC3d" target="_blank" className="flex items-center justify-center gap-2 p-4 bg-slate-50 border border-slate-200 rounded-2xl font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+            <FileText size={18} /> 근로자를 위한 신고안내
+          </a>
+          <a href="https://drive.google.com/uc?export=download&id=1d5Kig6srr4k7TqZpYkMuqpLqiIAEvNS2" target="_blank" className="flex items-center justify-center gap-2 p-4 bg-slate-50 border border-slate-200 rounded-2xl font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+            <FileText size={18} /> 증빙서류안내
+          </a>
+        </div>
+      </div>
+
+      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+        <h3 className="font-bold text-slate-800 mb-6 flex items-center gap-2"><Info className="text-blue-600" /> 자주 묻는 질문</h3>
+        <div className="space-y-3">
+          {faqs.map((faq, i) => (
+            <FAQItem key={i} q={faq.q} a={faq.a} />
           ))}
         </div>
       </div>
@@ -388,60 +529,24 @@ export default function App() {
 
   const tabs = [
     { id: 'schedule', label: '일정/절차', icon: Calendar },
-    { id: 'deductions', label: '공제항목', icon: Calculator },
-    { id: 'documents', label: '제출서류', icon: FileText },
-    { id: 'inquiry', label: '문의/FAQ', icon: MessageCircle },
+    { id: 'deductions', label: '주의사항 및 공제항목', icon: Calculator },
+    { id: 'documents', label: '제출서류', icon: Users },
+    { id: 'inquiry', label: '문의/자료내려받기', icon: MessageCircle },
   ];
 
-  if (view === 'attachment') {
-    return (
-      <div className="min-h-screen bg-slate-50 pb-16">
-        <header className="fixed top-0 w-full z-50 bg-white border-b border-slate-200 py-4 shadow-sm">
-          <div className="max-w-4xl mx-auto px-6 flex items-center gap-4">
-            <button onClick={() => setView('dashboard')} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
-              <ArrowLeft size={24} className="text-slate-600" />
-            </button>
-            <h1 className="text-xl font-bold text-slate-800">첨부서류 상세 가이드</h1>
-          </div>
-        </header>
-        <main className="max-w-4xl mx-auto px-4 pt-24">
-          <div className="space-y-4">
-            {ATTACHMENT_DATA.map((data, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:border-blue-300 transition-all">
-                <div className="flex justify-between items-start mb-3">
-                  <span className="text-[10px] font-black bg-blue-50 text-blue-600 px-2 py-1 rounded-md uppercase tracking-wider">{data.category}</span>
-                  {data.note.includes('간소화') && <span className="text-[10px] font-bold text-emerald-600 flex items-center gap-1"><CheckCircle size={12} /> 간소화 제공</span>}
-                </div>
-                <h3 className="text-lg font-bold text-slate-800 mb-3">{data.item}</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-3 border-t border-slate-50">
-                  <div>
-                    <p className="text-xs text-slate-400 mb-1 font-bold uppercase">준비 서류</p>
-                    <p className="text-sm text-slate-700 font-semibold">{data.docs}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-400 mb-1 font-bold uppercase">발급처 / 참고</p>
-                    <p className="text-sm text-slate-600">{data.issue}</p>
-                    {data.note && <p className="text-xs text-blue-500 mt-2 font-medium bg-blue-50/50 p-1.5 rounded-lg inline-block">{data.note}</p>}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </main>
-      </div>
-    );
-  }
+  if (view === 'attachment') return <AttachmentView onBack={() => setView('dashboard')} />;
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-900">
-      <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm py-3' : 'bg-blue-900 py-6 text-white'}`}>
+      <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3 text-slate-800' : 'bg-blue-900 text-white py-5'}`}>
         <div className="max-w-4xl mx-auto px-6 flex justify-between items-center">
           <h1 className="font-bold flex items-center gap-2 text-xl tracking-tight">
             <Calculator size={24} className={isScrolled ? 'text-blue-600' : 'text-white'} />
-            <span>상암중 2025 연말정산</span>
+            <span>상암중학교 2025 연말정산 가이드</span>
           </h1>
-          <div className={`text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full shadow-md ${isScrolled ? 'bg-red-100 text-red-600' : 'bg-red-600 text-white'}`}>
-            제출 마감: 01. 26. (15:30)
+          <div className="text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full shadow-md bg-red-600 text-white text-center">
+            제출: 26. 01. 22. ~ 01. 26. <br className="md:hidden" />
+            <span className="md:ml-2">9:00~15:30 (휴게시간 11:30~1:00)</span>
           </div>
         </div>
       </header>
@@ -466,46 +571,16 @@ export default function App() {
           {activeTab === 'schedule' && <ScheduleSection />}
           {activeTab === 'deductions' && <DeductionSection />}
           {activeTab === 'documents' && <DocumentsSection onOpenAttachment={() => setView('attachment')} />}
-          {activeTab === 'inquiry' && (
-            <div className="space-y-6">
-              <div className="bg-gradient-to-br from-blue-700 to-indigo-800 p-8 rounded-3xl text-white shadow-lg text-center">
-                <div className="inline-flex p-3 bg-white/10 rounded-2xl mb-4"><MessageCircle size={32} /></div>
-                <h2 className="text-2xl font-bold mb-2">도움이 필요하신가요?</h2>
-                <p className="text-blue-100 text-sm font-medium mb-8">가장 정확한 상담은 국세청 콜센터를 이용하세요.</p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <a href="https://www.hometax.go.kr" target="_blank" className="bg-white text-blue-700 px-8 py-3.5 rounded-xl font-bold hover:bg-blue-50 transition-colors shadow-sm">국세청 홈택스</a>
-                  <div className="bg-white/10 px-8 py-3.5 rounded-xl font-bold border border-white/20">상담센터 ☎ 126</div>
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                <h3 className="font-bold text-slate-800 mb-6 flex items-center gap-2"><Info className="text-blue-600" /> 자주 묻는 질문</h3>
-                <div className="space-y-3">
-                  <FAQItem 
-                    q="의료비 세액공제 한도는?" 
-                    a="총급여액의 3%를 초과하여 지출한 금액부터 대상입니다. 일반 부양가족은 연 700만원 한도이나 본인, 장애인, 65세 이상자는 한도 없이 전액 공제됩니다." 
-                  />
-                  <FAQItem 
-                    q="월세 세액공제 대상 주택은?" 
-                    a="주택법상 주택뿐만 아니라 주거용 오피스텔, 고시원도 포함됩니다. 반드시 전입신고가 되어 있어야 하며 임대차계약서 상 주소지와 주민등록지가 일치해야 합니다." 
-                  />
-                  <FAQItem 
-                    q="안경 구입비도 공제되나요?" 
-                    a="네, 시력교정용 안경 및 콘택트렌즈는 1인당 연 50만원 한도로 의료비 공제가 가능합니다. 국세청 자료에 없다면 안경점에서 영수증을 받아 제출하세요." 
-                  />
-                </div>
-              </div>
-            </div>
-          )}
+          {activeTab === 'inquiry' && <InquirySection />}
         </div>
       </main>
 
-      <footer className="bg-slate-900 text-slate-400 py-12 text-center text-xs">
-        <div className="max-w-4xl mx-auto px-6 border-b border-slate-800 pb-8 mb-8 flex justify-center gap-8">
+      <footer className="bg-slate-900 text-slate-400 py-10 text-center text-xs">
+        <div className="max-w-4xl mx-auto px-6 border-b border-slate-800 pb-6 mb-6 flex justify-center gap-6">
           <a href="https://www.hometax.go.kr" target="_blank" className="hover:text-white transition-colors">국세청 홈택스</a>
           <a href="https://sen.eduptl.kr/" target="_blank" className="hover:text-white transition-colors">나이스 시스템</a>
         </div>
-        <p className="font-medium text-slate-500">© 2025 상암중학교 행정실 연말정산 가이드</p>
+        <p className="font-medium text-slate-500">상암중학교</p>
       </footer>
     </div>
   );
