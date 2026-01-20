@@ -95,7 +95,7 @@
         // --- Data Definitions ---
         const ATTACHMENT_DATA = [
             { category: '인적공제', item: '부양가족 증명', docs: '주민등록표등본, 가족관계증명서', issue: '주민센터', note: '' },
-            { category: '주택자금', item: '장기주택저당차입금', docs: '이자상환증명서, 등기부등본 등', issue: '금융사, 등기소', note: '국세청 간소화 확인' },
+            { category: '주택자금', item: '장기주택저당차입금', docs: '이자상환증명서, 등기부등본, 주민등록등본, 장기주택저당차입금이자상환증명서  등', issue: '금융사, 등기소', note: '국세청 간소화 확인' },
             { category: '의료비', item: '안경/콘택트렌즈', docs: '시력교정용 영수증', issue: '안경점', note: '1인당 50만원 한도' },
             { category: '교육비', item: '교복 구입비', docs: '교육비납입증명서', issue: '교복판매처', note: '1인당 50만원 한도' },
         ];
@@ -414,7 +414,7 @@
                                     {item.id === 'c3' && (
                                         <div className="mt-4 pt-3 border-t border-red-50">
                                             <a 
-                                                href="https://drive.google.com/file/d/1QudtGSaXANxk9oG30Yqf4p6YBiJdc5FF/view?usp=drive_link" 
+                                                href="https://drive.google.com/file/d/1QudtGSaXANxk9oG30Yqf4p6YBiJdc5FF/view?usp=sharing" 
                                                 target="_blank"
                                                 className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 shadow-sm transition-all"
                                             >
@@ -666,6 +666,7 @@
     </script>
 </body>
 </html>
+
 
 
 
